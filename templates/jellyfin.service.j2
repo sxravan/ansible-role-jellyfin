@@ -1,0 +1,16 @@
+[Unit]
+Description=Jellyfin Media Server
+After=network.target
+
+[Service]
+User=jellyfin
+Group=jellyfin
+Type=simple
+ExecStart=/usr/bin/jellyfin \
+  --bind-address {{ jellyfin_bind_address }} \
+  --port {{ jellyfin_port }}
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

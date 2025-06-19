@@ -1,0 +1,16 @@
+#SPDX-License-Identifier: MIT-0
+---
+# defaults file for ansible-role-jellyfin
+# Jellyfin APT repository info
+jellyfin_apt_repo: "deb [arch=amd64] https://repo.jellyfin.org/debian bullseye main"
+jellyfin_apt_key_url: "https://repo.jellyfin.org/jellyfin_team.gpg.key"
+
+# Package names
+jellyfin_package: jellyfin
+
+# Service name
+jellyfin_service: jellyfin
+
+# Optional custom config (you can template this)
+jellyfin_bind_address: "0.0.0.0"
+jellyfin_port: 8096
