@@ -9,10 +9,24 @@
     state: present
     update_cache: yes
 
-- name: Add Jellyfin GPG key
-  ansible.builtin.apt_key:
+- name: Download Jellyfin GPG key
+  ansible.builtin.get_url:
     url: "{{ jellyfin_apt_key_url }}"
-    state: present
+    dest: /tmp/jellyfin-archive-keyring.asc
+    mode: '0644'
+
+- name: Dearmor Jellyfin key into a keyring
+  ansible.builtin.command: >
+    gpg --batch --yes --dearmor
+        --output /usr/share/keyrings/jellyfin-archive-keyring.gpg
+        /tmp/jellyfin-archive-keyring.asc
+  args:
+    creates: /usr/share/keyrings/jellyfin-archive-keyring.gpg
+
+- name: Remove temporary Jellyfin key file
+  ansible.builtin.file:
+    path: /tmp/jellyfin-archive-keyring.asc
+    state: absent
 
 - name: Add Jellyfin APT repository
   ansible.builtin.apt_repository:

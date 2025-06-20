@@ -2,7 +2,7 @@
 ---
 # defaults file for ansible-role-jellyfin
 # Jellyfin APT repository info
-jellyfin_apt_repo: "deb [arch=amd64] https://repo.jellyfin.org/debian bullseye main"
+jellyfin_apt_repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/jellyfin-archive-keyring.gpg] https://repo.jellyfin.org/debian bullseye main"
 jellyfin_apt_key_url: "https://repo.jellyfin.org/jellyfin_team.gpg.key"
 
 # Package names
